@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://2y3nt1ee6hg5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4jx1"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.90588236, 0.9098039, 0.9137255, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wm3ai"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8dubc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p7vwb"]
+
+[node name="page" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 449.0
+offset_top = 193.0
+offset_right = -449.0
+offset_bottom = 308.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x4jx1")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 82.0
+offset_top = 72.0
+offset_right = -82.0
+offset_bottom = -17.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0.7294118, 0.827451, 0.9882353, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wm3ai")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_8dubc")
+theme_override_styles/read_only = SubResource("StyleBoxEmpty_p7vwb")
+wrap_mode = 1
+caret_blink = true

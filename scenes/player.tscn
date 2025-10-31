@@ -1,0 +1,71 @@
+[gd_scene load_steps=6 format=3 uid="uid://nq5n71phla8b"]
+
+[ext_resource type="Script" uid="uid://b3jvbc8hxw5os" path="res://scripts/player_scene.gd" id="1_q631a"]
+[ext_resource type="Texture2D" uid="uid://dbc71wgyfvp7l" path="res://textures/cloud_done_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png" id="2_g2els"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_t110w"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 2
+properties/1/path = NodePath(".:visible")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("display:text")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath(".:scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath(".:health")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vefth"]
+size = Vector2(72, 112)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(55, 112)
+
+[node name="player_scene" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_q631a")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_t110w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -4)
+shape = SubResource("RectangleShape2D_vefth")
+debug_color = Color(0.73496693, 0.4217654, 0.55832714, 0.41960785)
+
+[node name="display" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -67.0
+offset_right = 51.0
+offset_bottom = 57.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 0
+theme_override_font_sizes/font_size = 25
+text = " a
+spa
+ce ship
+in the sky"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_g2els")
+
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(1.5, -2)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://chx5kbuvreqs2")
+spawn_path = NodePath("..")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

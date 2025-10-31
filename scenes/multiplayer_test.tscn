@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://o2o07qffcul2"]
+
+[ext_resource type="Script" uid="uid://dlgltba0u3e7e" path="res://scripts/multiplayer_test.gd" id="1_6jr63"]
+[ext_resource type="PackedScene" uid="uid://nq5n71phla8b" path="res://scenes/player.tscn" id="2_ntqd0"]
+
+[node name="multiplayer_test" type="Node2D"]
+script = ExtResource("1_6jr63")
+player_scene = ExtResource("2_ntqd0")
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://nq5n71phla8b")
+spawn_path = NodePath("..")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = -28.0
+offset_top = -21.0
+offset_right = 348.0
+offset_bottom = 201.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -116.0
+offset_top = -64.0
+offset_right = 116.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host"
+
+[node name="Join" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="host_online_id" type="LineEdit" parent="Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="online_id" type="RichTextLabel" parent="Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+focus_mode = 2
+theme_override_font_sizes/normal_font_size = 16
+text = "Loading..."
+horizontal_alignment = 1
+vertical_alignment = 1
+selection_enabled = true
+
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

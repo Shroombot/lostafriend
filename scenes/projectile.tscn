@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://chx5kbuvreqs2"]
+
+[ext_resource type="Script" uid="uid://bgiw45vy660rd" path="res://scripts/small_letter.gd" id="1_c8fcr"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_c8fcr"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[node name="projectile" type="RigidBody2D"]
+top_level = true
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_c8fcr")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, 1, -1, 7, 8, -1, 0, -10)
+
+[node name="Label" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -19.0
+offset_right = 20.0
+offset_bottom = 18.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "A"
+horizontal_alignment = 1
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_c8fcr")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
